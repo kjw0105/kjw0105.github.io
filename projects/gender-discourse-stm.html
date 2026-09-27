@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>온라인 여성혐오 담론 구조 분석 | JINWOO KIM</title>
+  <meta name="description" content="2018–2025년 온라인 텍스트에 구조적 토픽 모델을 적용해 젠더 담론의 주제 구조와 플랫폼별 차이를 분석한 프로젝트.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style.css?v=20260927">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <nav class="nav" aria-label="주요 메뉴"><div class="container nav-inner">
+    <a class="brand" href="/"><span class="brand-mark">JK</span>JINWOO KIM</a>
+    <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="primary-navigation"><a href="/#about">소개</a><a href="/#experience">경험</a><a href="/#projects" aria-current="page">프로젝트</a><a href="/#activities">활동</a><a href="/#contact">연락처</a></div>
+  </div></nav>
+
+  <main id="main">
+    <header class="page-hero"><div class="container">
+      <div class="kicker">프로젝트 05</div>
+      <h1>온라인 여성혐오 담론 구조 분석</h1>
+      <p class="lead">‘설거지’와 ‘퐁퐁’을 중심으로 대규모 온라인 텍스트의 주제 구조와 시기·플랫폼별 차이를 분석한 정치사회 데이터 연구.</p>
+      <div class="page-meta"><span class="meta-pill">2026.01–06</span><span class="meta-pill">공동 연구</span><span class="meta-pill">텍스트 마이닝</span><span class="meta-pill">구조적 토픽 모델</span></div>
+      <dl class="hero-brief"><div><dt>데이터</dt><dd>4개 플랫폼 · 2018–2025</dd></div><div><dt>접근</dt><dd>Kiwi 전처리와 STM 분석</dd></div><div><dt>담당</dt><dd>수집 환경·분류 기준·STM 실험 문서화</dd></div></dl>
+    </div></header>
+
+    <section class="project-section"><div class="container">
+      <h2>배경</h2>
+      <p class="section-intro">온라인에서 확산되는 젠더 관련 표현은 같은 단어라도 여성 비하, 밈, 일상어, 정치·주식 은어처럼 서로 다른 맥락에서 사용됩니다. 단순 키워드 빈도만으로는 담론의 성격과 변화 과정을 구분하기 어렵습니다.</p>
+      <aside class="core-question"><span>핵심 질문</span><p>온라인 젠더 담론은 어떤 주제로 구성되며, 시기와 플랫폼에 따라 어떻게 달라지는가?</p></aside>
+    </div></section>
+
+    <section class="project-section"><div class="container">
+      <h2>목적</h2>
+      <p class="callout">‘설거지’와 ‘퐁퐁’ 관련 게시물·댓글을 맥락별 주제로 분리하고, 담론의 확산 시점과 플랫폼별 차이를 설명합니다.</p>
+      <p>연구는 특정 표현을 지지하거나 일반화하기 위한 것이 아니라, 온라인에서 생성·변형되는 정치사회 담론을 데이터로 구조화해 살펴보기 위해 진행했습니다.</p>
+    </div></section>
+
+    <section class="project-section"><div class="container">
+      <h2>구조</h2>
+      <p class="section-intro">수집부터 결과 해석까지 재현 가능한 분석 흐름으로 구성했습니다.</p>
+      <div class="flow flow-seven" aria-label="온라인 젠더 담론 분석 흐름"><div class="flow-step"><b>01</b><span>플랫폼 선정</span></div><div class="flow-step"><b>02</b><span>게시물·댓글 수집</span></div><div class="flow-step"><b>03</b><span>문서 단위 재구성</span></div><div class="flow-step"><b>04</b><span>형태소 전처리</span></div><div class="flow-step"><b>05</b><span>K 후보 진단</span></div><div class="flow-step"><b>06</b><span>STM 학습</span></div><div class="flow-step"><b>07</b><span>시기·플랫폼 해석</span></div></div>
+      <p class="data-line"><b>분석 범위</b> DCinside · MLBPark · FMkorea · YouTube / 2018–2025</p>
+    </div></section>
+
+    <section class="project-section"><div class="container">
+      <h2>작동 방식</h2>
+      <div class="decision-list">
+        <article><span>01 · 문서화</span><h3>게시글 하나를 하나의 분석 문서로 재구성했습니다.</h3><p>본문과 댓글을 합쳐 보존하되 게시·댓글 물량은 별도로 집계해, 댓글이 많은 게시글의 본문이 반복되며 토픽을 과도하게 좌우하는 문제를 줄였습니다.</p></article>
+        <article><span>02 · 전처리</span><h3>Kiwi로 명사·동사·형용사 중심의 내용어를 추출했습니다.</h3><p>저빈도 토큰과 플랫폼 정형구를 제거하고, 인터페이스 문구가 독립 토픽으로 형성되는지 확인해 분석 입력을 정제했습니다.</p></article>
+        <article><span>03 · 모델 선택</span><h3>통계 지표와 해석 가능성을 함께 고려했습니다.</h3><p><code>searchK</code>의 의미 일관성·배타성·held-out 우도·잔차를 비교하고, 실제 담론 유형이 구분되는지를 검토해 ‘설거지’ K=13, ‘퐁퐁’ K=12를 선택했습니다.</p></article>
+        <article><span>04 · 비교 분석</span><h3>토픽을 상위 클러스터로 묶어 시간과 플랫폼을 비교했습니다.</h3><p>혐오, 맥락 의존, 일상, 정치·주식 범주로 구조화하고 월별 추이와 플랫폼별 분포를 분석했습니다.</p></article>
+      </div>
+    </div></section>
+
+    <section class="project-section"><div class="container">
+      <h2>직접 기여</h2>
+      <div class="scope-note"><b>공동 연구 범위</b><p>팀에서는 플랫폼 데이터 수집과 전처리, STM 재학습, 토픽·클러스터 해석, 국·영문 보고서 작성을 함께 진행했습니다.</p></div>
+      <p class="section-intro">이 중 제가 직접 담당한 부분은 다음과 같습니다.</p>
+      <div class="mechanism-list contribution-detail"><div><span>01 · 수집 설계</span><p>네이버 뉴스와 YouTube의 데이터 수집 환경을 조사하고, YouTube Data API를 이용한 영상·댓글 수집 방식과 FMKorea·팟캐스트 데이터의 수집 가능성을 검토했습니다.</p></div><div><span>02 · 연구 환경</span><p>공유 자료를 분석 서버로 옮기고, 팀원이 VS Code Remote SSH로 작업할 수 있도록 접속·폴더 사용 절차를 문서화했습니다.</p></div><div><span>03 · 분류 기준</span><p>텍스트를 <b>misogyny / derivation / no</b>로 구분하는 판단 기준과 우선순위를 정리해 라벨링 논의의 기준안을 만들었습니다.</p></div><div><span>04 · 분석·문서화</span><p>형태소 정제 데이터와 토픽 표를 만들고, STM의 K 후보 실험과 결과 보고서·코드 가이드를 작성했습니다. 팀원과 전처리 코드를 비교하며 중복 제거 방식의 차이도 점검했습니다.</p></div></div>
+    </div></section>
+
+    <section class="project-section result-section"><div class="container">
+      <h2>결과</h2>
+      <p>최종 분석은 정제 후 두 키워드의 문서 <b>99,842건</b>을 사용했습니다.</p>
+      <div class="stat-grid"><div class="stat-box"><strong>61,494</strong><span>‘설거지’ 분석 문서</span></div><div class="stat-box"><strong>38,348</strong><span>‘퐁퐁’ 분석 문서</span></div><div class="stat-box"><strong>60.4%</strong><span>‘설거지’ 혐오 클러스터</span></div><div class="stat-box"><strong>68.8%</strong><span>‘퐁퐁’ 혐오 클러스터</span></div></div>
+      <p class="result-meaning">‘설거지’는 혐오 담론과 함께 가사·주식 등 비이념 용법이 분리된 반면, ‘퐁퐁’은 일상 용법 없이 이념·논쟁 어휘로 집중되었습니다. 2021년 10월 22일에는 직전 일자 대비 게시량이 약 130배 증가했고, 이후 담론은 플랫폼 성격에 따라 혐오·정치·시장 맥락으로 다르게 나타났습니다.</p>
+      <div class="follow-up-result"><h3>플랫폼별 차이</h3><p>혐오 클러스터 비중은 DCinside에서 ‘설거지’ 75.8%, ‘퐁퐁’ 81.8%로 높았습니다. 수집된 YouTube 자료에서는 정치·주식 클러스터가 각각 64.8%, 91.6%로 나타나 같은 표현도 게시판과 채널의 성격에 따라 다른 담론으로 사용됨을 확인했습니다.</p><p class="limitation"><b>해석 범위</b> — 이 비율은 선정한 키워드·게시판·채널과 수집 자료에 대한 분석 결과이며, 전체 플랫폼 이용자나 사회 전체의 인식을 대표하지 않습니다.</p></div>
+    </div></section>
+
+    <section class="project-section lesson-section"><div class="container"><div class="lesson"><h2>회고</h2><strong>수집 → 정제 → 모델링 → 맥락 검증</strong><p>사회현상을 데이터로 분석할 때는 모델을 실행하는 것만큼 분석 단위와 분류 기준을 명확히 정하는 일이 중요했습니다. 중복 문서와 플랫폼 정형구가 토픽 구조를 바꿀 수 있음을 확인하며, 정량 결과를 원문 맥락과 함께 검증하는 연구 과정을 경험했습니다.</p></div></div></section>
+    <section class="project-section next-section"><div class="container"><a class="next-project" href="/#projects"><div><small>프로젝트 목록</small><h3>전체 프로젝트로 돌아가기</h3></div><span>→</span></a></div></section>
+  </main>
+  <footer class="footer"><div class="container"><div class="footer-note">JINWOO KIM · 포트폴리오</div></div></footer>
+  <script src="../script.js?v=20260927"></script>
+</body>
+</html>

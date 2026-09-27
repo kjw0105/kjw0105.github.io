@@ -1,50 +1,8 @@
-<!doctype html><html lang="ko"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RO 비플럭스 분석 및 CIP 일정 최적화 | JINWOO KIM</title>
-<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../style.css?v=20260923"></head><body>
-<a class="skip-link" href="#main">본문으로 건너뛰기</a>
-<nav class="nav" aria-label="주요 메뉴"><div class="container nav-inner"><a class="brand" href="/"><span class="brand-mark">JK</span>JINWOO KIM</a><button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="메뉴 열기"><span></span><span></span><span></span></button><div class="nav-links" id="primary-navigation"><a href="/#about">소개</a><a href="/#experience">경험</a><a href="/#projects" aria-current="page">프로젝트</a><a href="/#activities">활동</a><a href="/#contact">연락처</a></div></div></nav>
-<main id="main">
-<header class="page-hero"><div class="container"><div class="kicker">프로젝트 03</div><h1>RO 비플럭스 분석 및 CIP 일정 최적화</h1><p class="lead">막 성능 저하와 세척 비용 사이의 상충관계를 고려해 CIP 시점을 최적화한 퍼듀대학교 프로젝트.</p><div class="page-meta"><span class="meta-pill">2026.06–07</span><span class="meta-pill">퍼듀대학교</span><span class="meta-pill">최적화</span><span class="meta-pill">타부 탐색</span></div></div></header>
-
-<section class="project-section"><div class="container">
-<h2>배경</h2><p>RO 공정에서는 막 오염으로 비플럭스가 감소하면 CIP 세척을 수행합니다. 세척을 자주 하면 막 성능을 빠르게 회복할 수 있지만 약품비와 가동 중단 비용이 증가하고, 세척을 늦추면 생산 성능 저하에 따른 손실이 커집니다.</p>
-<p>실제 데이터에서는 세척 기준이 모든 운전 사이클에 동일하게 적용되지 않았습니다. 따라서 CIP 시점을 단순한 임계값으로 판단하기보다, <b>공정 데이터로 막 상태를 이해하고 성능 저하 비용과 세척 비용을 함께 고려하는 운영 의사결정 문제</b>로 다룰 필요가 있었습니다.</p>
-</div></section>
-<section class="project-section objective-section"><div class="container">
-<h2>목적</h2><p class="callout">비플럭스와 주요 운전변수의 변화를 분석하고, 막 성능 저하 비용과 세척 비용을 함께 고려한 CIP 일정을 도출합니다.</p>
-</div></section>
-<section class="project-section structure-section"><div class="container">
-<h2>구조</h2><p class="section-intro">원시 공정 데이터를 분석 가능한 형태로 정리하고 모델 비교를 통해 막 상태를 해석한 뒤, 비용 목적함수와 CIP 일정 탐색으로 연결했습니다.</p><div class="flow flow-seven"><div class="flow-step"><b>01</b><span>원시 공정 데이터</span></div><div class="flow-step"><b>02</b><span>이상치·결측치 처리</span></div><div class="flow-step"><b>03</b><span>운전·세척 구간 분리</span></div><div class="flow-step"><b>04</b><span>비플럭스 분석</span></div><div class="flow-step"><b>05</b><span>Ridge·LSTM 비교</span></div><div class="flow-step"><b>06</b><span>비용 목적함수</span></div><div class="flow-step"><b>07</b><span>CIP 일정 탐색</span></div></div>
-</div></section>
-<section class="project-section how-section"><div class="container">
-<h2>작동 방식</h2>
-<div class="mechanism-list">
-<div><span>01</span><p><b>운전 데이터 구성</b> — K-water의 18개월 공정 데이터에서 6,547시간의 운전 구간과 10회의 CIP 주기를 구분했습니다.</p></div>
-<div><span>02</span><p><b>이상치·결측치 처리</b> — 24시간 Rolling Z-score로 비플럭스·운영차압·유입압력의 비정상 스파이크를 처리하고 센서 미기록값을 변수 특성에 맞게 보간했습니다.</p></div>
-<div><span>03</span><p><b>운전 상태 구분</b> — 운전변수는 실제 운전 사이클 내부에서만 보간하고 세척 구간은 별도로 유지한 뒤, 모델 입력에 <code>is_operating</code> 변수를 추가했습니다.</p></div>
-<div><span>04</span><p><b>비플럭스 분석</b> — Ridge와 LSTM을 비교하고 비플럭스·유입압력 등 운전변수의 중요도를 확인했습니다. 제한된 데이터와 자기회귀 특성에서는 Ridge가 더 안정적인 결과를 보였습니다.</p></div>
-<div><span>05</span><p><b>일정 최적화</b> — 막 성능 저하 손실과 CIP 비용을 목적함수로 구성하고, 그리디 탐색과 타부 탐색을 비교하며 λ에 따른 비용 균형을 확인했습니다.</p></div>
-</div>
-<div class="stat-grid"><div class="stat-box"><strong>13,104</strong><span>시간 단위 데이터</span></div><div class="stat-box"><strong>6,547h</strong><span>운영 시간</span></div><div class="stat-box"><strong>10</strong><span>관측된 CIP 주기</span></div><div class="stat-box"><strong>18개월</strong><span>2021.01–2022.06</span></div></div>
-<p class="data-line"><b>분석 변수</b> 비플럭스 · 운영차압 · 유입압력 · 생산량 · TDS · 수온 · 탁도 · 전도도 · pH · 강수량 · 기온</p>
-</div></section>
-<section class="project-section"><div class="container">
-<h2>담당한 부분</h2><p class="section-intro">팀의 전체 분석·최적화 과정에서 문제 정의와 데이터 분석을 맡고, 모델 결과를 운영 의사결정의 관점으로 정리했습니다.</p>
-<div class="mechanism-list contribution-detail">
-<div><span>01 · 문제 정의</span><p><b>운영 문제 정식화</b> — 비플럭스 감소와 CIP 비용 사이의 상충관계를 운영 최적화 문제로 정리했습니다.</p></div>
-<div><span>02 · 데이터 분석</span><p><b>공정변수 검토</b> — 주요 공정변수를 검토하고 운전 구간과 세척 구간을 구분하는 분석 과정에 참여했습니다.</p></div>
-<div><span>03 · 결과 해석</span><p><b>모델 비교</b> — Ridge와 LSTM 결과를 데이터 규모와 자기회귀 특성 관점에서 비교하고 CIP 의사결정 문제와 연결했습니다.</p></div>
-<div><span>04 · 결과물</span><p><b>자료 검토와 제출</b> — 영문 발표자료와 질의응답 내용을 검토하고 최종 프로젝트 자료를 제출했습니다.</p></div>
-</div>
-</div></section>
-<section class="project-section result-section"><div class="container">
-<h2>결과</h2><div class="stat-grid"><div class="stat-box"><strong>10 → 5</strong><span>그리디 방식 CIP 횟수</span></div><div class="stat-box"><strong>65.97%</strong><span>목적함수 최대 개선</span></div></div><p>조건에 따라 기존 약 10회의 세척을 5회 수준까지 줄일 수 있었고, 특정 λ 조건에서는 기존 방식 대비 목적함수 기준 최대 65.97% 개선을 확인했습니다.</p>
-</div></section>
-<section class="project-section lesson-section"><div class="container"><div class="lesson"><h2>배운 점</h2><strong>분석 → 정식화 → 최적화 → 의사결정</strong><p>예측 정확도가 높은 모델을 만드는 것만으로는 실제 운영 문제를 해결할 수 없다는 점을 배웠습니다. 데이터 전처리와 모델 비교 결과를 비용 구조와 제약조건으로 연결하면서, 분석 결과를 실제 의사결정 문제로 변환하는 과정을 경험했습니다.</p></div></div></section>
-<section class="project-section next-section"><div class="container">
-        <a class="next-project" href="defense-strategy.html"><div><small>다음 프로젝트</small><h3>국제정세 변화 기반 방산 시장 분석</h3></div><span>→</span></a>
-        </div></section>
-</main><footer class="footer"><div class="container"><div class="footer-note">JINWOO KIM · 포트폴리오</div></div></footer>
-<script src="../script.js?v=20260923"></script></body></html>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RO 비플럭스 분석 및 CIP 일정 최적화 | JINWOO KIM</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../style.css?v=20260927"></head><body><a class="skip-link" href="#main">본문으로 건너뛰기</a><nav class="nav" aria-label="주요 메뉴"><div class="container nav-inner"><a class="brand" href="/"><span class="brand-mark">JK</span>JINWOO KIM</a><button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="메뉴 열기"><span></span><span></span><span></span></button><div class="nav-links" id="primary-navigation"><a href="/#about">소개</a><a href="/#experience">경험</a><a href="/#projects" aria-current="page">프로젝트</a><a href="/#activities">활동</a><a href="/#contact">연락처</a></div></div></nav>
+<main id="main"><header class="page-hero"><div class="container"><div class="kicker">프로젝트 03</div><h1>RO 비플럭스 분석 및 CIP 일정 최적화</h1><p class="lead">공정 데이터 분석 결과를 막 성능 저하 비용과 세척 비용 사이의 균형을 찾는 CIP 운영 의사결정으로 연결한 프로젝트.</p><div class="page-meta"><span class="meta-pill">2026.06–07</span><span class="meta-pill">퍼듀대학교</span><span class="meta-pill">최적화</span><span class="meta-pill">타부 탐색</span></div><dl class="hero-brief"><div><dt>문제</dt><dd>성능 저하와 세척 비용의 상충관계</dd></div><div><dt>접근</dt><dd>공정 분석·비용함수·일정 탐색</dd></div><div><dt>담당</dt><dd>문제 정의·데이터 분석·결과 해석</dd></div></dl></div></header>
+<section class="project-section"><div class="container"><h2>문제와 중요성</h2><p class="section-intro">CIP를 자주 하면 막 성능을 회복할 수 있지만 약품비와 가동 중단 비용이 늘고, 늦추면 생산 성능 저하 손실이 커집니다. 실제 데이터의 세척 기준도 모든 운전 사이클에 동일하지 않았습니다.</p><aside class="core-question"><span>핵심 질문</span><p>공정 데이터를 분석하는 데서 끝나지 않고, 실제 CIP 시점 결정으로 연결하려면 어떻게 해야 할까?</p></aside></div></section>
+<section class="project-section"><div class="container"><h2>해결 접근</h2><p class="section-intro">먼저 데이터 품질과 운전 상태를 구분하고 막 성능 변화를 해석했습니다. 이후 예측 결과를 막 성능 저하 비용과 세척 비용의 목적함수로 바꿔 CIP 일정을 탐색했습니다.</p><div class="flow flow-seven" aria-label="분석과 최적화 흐름"><div class="flow-step"><b>01</b><span>원시 데이터</span></div><div class="flow-step"><b>02</b><span>이상치·결측치</span></div><div class="flow-step"><b>03</b><span>운전·세척 분리</span></div><div class="flow-step"><b>04</b><span>비플럭스 분석</span></div><div class="flow-step"><b>05</b><span>Ridge·LSTM</span></div><div class="flow-step"><b>06</b><span>비용 목적함수</span></div><div class="flow-step"><b>07</b><span>CIP 일정</span></div></div><div class="stat-grid"><div class="stat-box"><strong>13,104</strong><span>시간 단위 데이터</span></div><div class="stat-box"><strong>6,547h</strong><span>실제 운전 구간</span></div><div class="stat-box"><strong>10</strong><span>관측 CIP 주기</span></div><div class="stat-box"><strong>18개월</strong><span>2021.01–2022.06</span></div></div></div></section>
+<section class="project-section"><div class="container"><h2>판단과 실행 과정</h2><div class="decision-list"><article><span>01 · 데이터 품질</span><h3>센서 이상과 실제 세척 구간을 같은 결측값으로 처리하지 않았습니다.</h3><p>24시간 Rolling Z-score로 비플럭스·운영차압·유입압력 스파이크를 처리하고, 0값과 변수별 결측치를 구분해 보간했습니다. 운전 사이클 내부만 보간하고 <code>is_operating</code>을 추가했습니다.</p></article><article><span>02 · 모델 비교</span><h3>복잡한 모델보다 데이터 특성에 맞는 안정성을 봤습니다.</h3><p>Ridge와 LSTM을 비교했고, 제한된 데이터 규모와 자기회귀 특성에서 Ridge가 더 안정적인 결과를 보인 것으로 해석했습니다.</p></article><article><span>03 · 운영 결정</span><h3>예측값을 비용과 제약조건으로 전환했습니다.</h3><p>막 성능 저하 손실과 CIP 비용을 목적함수로 구성하고 λ에 따른 균형을 확인하며 그리디 탐색과 타부 탐색을 비교했습니다.</p></article></div><p class="data-line"><b>분석 변수</b> 비플럭스 · 운영차압 · 유입압력 · 생산량 · TDS · 수온 · 탁도 · 전도도 · pH · 강수량 · 기온</p></div></section>
+<section class="project-section"><div class="container"><h2>직접 기여</h2><div class="scope-note"><b>팀 프로젝트 범위</b><p>K-water 공정 데이터 전처리, 모델 비교, 비용 목적함수와 CIP 일정 탐색을 수행했습니다.</p></div><p class="section-intro">제가 직접 담당한 부분은 다음과 같습니다.</p><div class="mechanism-list contribution-detail"><div><span>01 · 문제 정의</span><p>비플럭스 감소와 CIP 비용의 상충관계를 운영 최적화 문제로 정리했습니다.</p></div><div><span>02 · 데이터 분석</span><p>주요 공정변수를 검토하고 운전 구간과 세척 구간을 구분하는 분석 과정에 참여했습니다.</p></div><div><span>03 · 결과 해석</span><p>Ridge와 LSTM 결과를 데이터 규모와 자기회귀 특성 관점에서 비교하고 CIP 의사결정과 연결했습니다.</p></div><div><span>04 · 결과물</span><p>영문 발표자료와 질의응답 내용을 검토하고, 최종 프로젝트 자료의 취합과 제출을 맡았습니다.</p></div></div></div></section>
+<section class="project-section result-section"><div class="container"><h2>결과와 의미</h2><div class="stat-grid"><div class="stat-box"><strong>10 → 5</strong><span>그리디 방식 CIP 횟수</span></div><div class="stat-box"><strong>65.97%</strong><span>목적함수 최대 개선</span></div></div><p class="result-meaning">조건에 따라 기존 약 10회의 세척을 5회 수준까지 줄였고, 특정 λ 조건에서 목적함수 기준 최대 65.97% 개선을 확인했습니다. 예측을 보고하는 데 그치지 않고 비용 구조를 통해 실제 운영 선택지로 바꾼 결과입니다.</p></div></section>
+<section class="project-section lesson-section"><div class="container"><div class="lesson"><h2>회고</h2><strong>분석 → 정식화 → 최적화 → 의사결정</strong><p>예측 정확도만으로 실제 운영 문제를 해결할 수 없다는 점을 배웠습니다. 전처리와 모델 비교 결과를 비용 구조와 제약조건으로 연결하며 분석을 의사결정 문제로 변환했습니다.</p></div></div></section><section class="project-section next-section"><div class="container"><a class="next-project" href="defense-strategy.html"><div><small>다음 프로젝트</small><h3>국제정세 변화 기반 방산 시장 분석</h3></div><span>→</span></a></div></section></main><footer class="footer"><div class="container"><div class="footer-note">JINWOO KIM · 포트폴리오</div></div></footer><script src="../script.js?v=20260927"></script></body></html>
