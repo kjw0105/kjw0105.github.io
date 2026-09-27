@@ -71,7 +71,7 @@ main:focus { outline: none; }
 .project-section p b { color: var(--ink); }
 .project-section .section-intro { max-width: 820px; margin-bottom: 30px; color: var(--ink); font-size: 1.05rem; line-height: 1.75; }
 .project-section .callout { max-width: 900px; margin: 30px 0; padding: 0 0 0 22px; border-left: 3px solid var(--accent); color: var(--ink); font-size: clamp(1.35rem, 2.2vw, 2rem); font-weight: 680; line-height: 1.45; letter-spacing: -.035em; }
-.hero-brief { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 960px; margin: 46px 0 0; border-top: 1px solid var(--ink); }
+.hero-brief { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1080px; margin: 46px 0 0; border-top: 1px solid var(--ink); }
 .hero-brief > div { min-width: 0; padding: 18px 24px 0 0; }
 .hero-brief dt { color: var(--blue-dark); font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
 .hero-brief dd { margin: 7px 0 0; color: var(--ink); font-size: .9rem; font-weight: 650; line-height: 1.5; overflow-wrap: anywhere; }
@@ -121,6 +121,7 @@ main:focus { outline: none; }
 .follow-up-result { max-width: 960px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--ink); }
 .follow-up-result h3 { margin: 0 0 12px; color: var(--ink); font-size: clamp(1.2rem, 1.8vw, 1.5rem); }
 .follow-up-result .limitation { margin-top: 18px; padding-left: 16px; border-left: 2px solid var(--blue); font-size: .9rem; }
+.result-scope { max-width: 900px; margin-top: 28px !important; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted) !important; font-size: .88rem; line-height: 1.7; }
 .chart-card { max-width: 960px; margin: 30px 0; padding: 28px 0 12px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .bar-row { display: grid; grid-template-columns: 110px minmax(0, 1fr) 90px; gap: 20px; align-items: center; margin: 14px 0; font-size: .86rem; }
 .bar-row b { color: var(--ink); text-align: right; }
@@ -267,6 +268,9 @@ th { color: var(--ink); }
 .experience-row h2, .activity-row h2, .education-row h2,
 .experience-row h3, .activity-row h3 { margin: 0; color: var(--ink); font-size: clamp(1.15rem, 1.7vw, 1.45rem); font-weight: 730; line-height: 1.35; letter-spacing: -.025em; }
 .experience-row p, .activity-row p, .education-row p { max-width: 740px; margin: 9px 0 0; color: var(--muted); font-size: .93rem; line-height: 1.7; }
+.experience-row-secondary { margin-top: 14px; border-top: 1px solid var(--ink); }
+.experience-row-secondary h2, .experience-row-secondary h3 { color: var(--muted); font-size: clamp(1.05rem, 1.45vw, 1.25rem); }
+.experience-category { display: block; margin-bottom: 6px; color: var(--blue-dark); font-size: .7rem; font-weight: 800; letter-spacing: .09em; }
 .activity-row .activity-keywords { margin-top: 14px; color: var(--blue-dark); font-size: .75rem; font-weight: 750; letter-spacing: .035em; }
 
 /* Project index: navigation, not case-study content */
